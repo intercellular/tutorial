@@ -13,13 +13,13 @@ Cell is an API-less framework that creates a **self-contained & self-driving DOM
 
 - **No API** : Remember that Cell is all about how you structure your logic and NOT about learning how to use some proprietary API. This document will walk you through this.
 - **Self contained** : Each element is its own universe (context) with its own variables and functions.
-- **Self driving** : Each element communicates with outside world via stateless function calls. This means each cell can survive on their own and plug into anywhere with zero overhead/footprint.
+- **Self driving** : Each element communicates with outside world via stateless function calls. This means each cell can survive on its own and plug into anything with zero overhead/footprint.
 
 <br>
 
 # How to use this document
 
-Because of the unique traits mentioned above, learning Cell is mostly about understanding "how" it works, but NOT about learning to use and remember API methods, **because there is no API**.
+Because of the unique traits mentioned above, learning Cell is mostly about understanding how Cell works, and not about how to use and memorize some API methods, **because there is no API**.
 
 **In fact, you don't even need to read this tutorial if you just understand [the 3 rules](https://www.celljs.org/#there-are-only-3-rules)**.
 
@@ -45,11 +45,11 @@ Building a dynamic web app with Cell can be summarized into the following 3 step
 
 # 1. How to create HTML elements from scratch
 
-Cell creates HTML elements (Cell calls a create element a "Phenotype") from a blueprint (called "Genotype") written in JSON. "Blueprint" sounds like some serious piece of technology but it's nothing more than just an ordinary javascript variable that describes how each HTML element should look and behave.
+Cell creates HTML elements (Cell calls a created element a "Phenotype") from a blueprint (called "Genotype") written in JSON. "Blueprint" sounds like some serious piece of technology but it's nothing more than just an ordinary javascript variable that describes how each HTML element should look and behave.
 
 All you need to do is declare a variable following a simple naming convention. And then Cell takes care of the rest to turn it into an actual HTML element.
 
-Let's start with *6 special attributes (The only keywords you need to remember when using Cell, ever)** you can use to define an element's structure.
+Let's start wit 6 special attributes (The only keywords you need to remember when using Cell, ever) you can use to define an element's structure.
 
 Keyword      |  Explanation
 -------------|------------------------------------
@@ -402,7 +402,7 @@ Default 				      | **Everything else**, by default gets mapped 1:1 to DOM Attri
 
 # 3. Inter-Cellular Communication
 
-So far we know how to create elements, how to bring them to life by storing data and running app logic dierctly on them.
+So far we know how to create elements and how to bring them to life by storing data and running app logic dierctly on them.
 
 Now let's take a look at how to let these cells communicate with one another to create a truly decentralized DOM.
 
@@ -587,7 +587,7 @@ What's going on:
 2. When `_doSomething()` finishes it selects the originating element and calls its `_done()` function to return the value.
 
 
-This is perfectily feasible but another way to do this is by passing the **caller** element itself as an argument, so that we have the handle when we're ready to call its `_done()` function (so that we don't have to run the `querySelector` command one more time). Here's the same example, using this approach:
+This is perfectily feasible but another way to do this is by passing the **caller** element itself as an argument, so that we have the handle when we're ready to call its `_done()` function and we don't have to run the `querySelector` command one more time. Here's the same example, using this approach:
 
 ```js
 ಠᴥಠ = {
