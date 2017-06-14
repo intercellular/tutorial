@@ -171,6 +171,38 @@ creates a button like this:
 
 and attach the `onclick` event handler, so it will display an alert `"clicked!"` when you click.
 
+## e. Injecting a Cell into an exsiting DOM tree
+
+By default all Cell elements get appended to the document `<body>` tag in the order they were declared. 
+
+However sometimes you may not want to build an entire web page with Cell. You may just want to generate a small component with Cell and inject it into an existing DOM tree. Here's how:
+
+### 1. Set an `id` on the element you would like to inject into.
+
+```html
+<html>
+<body>
+  <h1>Widget</h1>
+  <div id='widget'></div>
+</body>
+</html>
+```
+
+### 2. Include the same `id` in your Cell definition.
+
+```js
+ಠᴥಠ = {
+  $cell: true,
+  id: "widget",
+  $init: function(){
+    // some initialization
+  }
+}
+```
+
+THis will replace the original `<div id='widget'></div>` with your new Cell element.
+
+You can create and inject as many of these components as you want. Just remember to specify a unique id everytime.
 
 <br>
 
