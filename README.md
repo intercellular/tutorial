@@ -54,7 +54,7 @@ Let's start wit 6 special attributes (The only keywords you need to remember whe
 Keyword      |  Explanation
 -------------|------------------------------------
 `$cell`		| A marker to indicate that this is a Cell element and not just a normal Javascript object
-`$type`      | Dom Element type (Example: `div`, `span`, `textarea`, etc.)
+`$type`      | Dom Element type (Example: `div`, `span`, `textarea`, etc., and `"text"` for plain text node)
 `$text`      | Text content inside the element
 `$components`| Array of child Genotypes
 `$init`      | The function that runs automatically after the element is created
@@ -89,6 +89,33 @@ Creates:
 - `$text` describes the text content of a node--in this case `Hello`.
 
 As we already mentioned, the variable name doesn't matter. The only thing that matters is that you include the `$cell` key, and Cell will turn that variable into an HTML element.
+
+---
+
+> **NOTE:** To create a plain text node, you can use `$type: "text"`. For example, 
+
+```html
+<div class='row'>
+  <img src="http://localhost/img.jpg"> Plain text
+</div>
+```
+
+> You would write
+
+```js
+Row = {
+  class: "row",
+  $components: [{
+    $type: "img",
+    src: "http://localhost/img.jpg"
+  }, {
+    $type: "text",
+    $text: "Plain Text"
+  }]
+}
+```
+
+---
 
 <br>
 
