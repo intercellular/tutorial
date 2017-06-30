@@ -395,7 +395,6 @@ var selector2 = {
 
 The `$update` function, when defined, gets executed automatically when any data stored on the element gets updated.
 
-
 To explain this concept, let's try building an app that:
 
 1. Fetches a remote API (Github API)
@@ -443,6 +442,37 @@ Let's walk through the code step by step.
 1. `_github()` : This function's job is to fetch from the Github API. We use the browser's [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API to make a request to Github Trending search API to search for "javascript" ([https://api.github.com/search/repositories?q=javascript](https://api.github.com/search/repositories?q=javascript")) When we get the return value, we turn it into JSON (`return res.json()`), and then we call `this._refresh()`.
 2. `_refresh()` : This function simply takes the result from the `_github()` function and stores it on the `_items` array.
 3. `$update()` : **Here's the good stuff happens.** `$update()` is triggered automatically when `_items` gets updated, because we declared `_items` on the object at the beginning. We want to update `$components` with what we got from Github, so we run a map on `this.__items` with `this._template` and our Github app is updated.
+
+--- 
+
+### Important!
+
+To auto-trigger `$update()` when a "_ variable" updates, you **MUST** declare it on the object to indicate that this variable needs to be tracked.
+
+Take a look at this code for example:
+
+
+```
+{
+  _items: [],
+  _counter: 0,
+  _increment: function(){
+    this._dirty = true;
+    this._items.push(this._counter++);
+  },
+  $update: function(){
+    this.$components = this._items.map(function(item){ return {$text: item} })
+  }
+}
+```
+
+In this example, we make use of 3 non-function **_ variables**: `_items`, `_counter`, and `_dirty`. 
+
+However since only `_items` and `_counter` are defined on the object, they are the only variables that will trigger the `$update()` function when their values change. 
+
+On the other hand, setting `this._dirty = true;` won't trigger the `$update()` since it's not explicitly declared in the definition therefore not tracked.
+
+---
 
 <br>
 
